@@ -12,7 +12,7 @@ import java.util.List;
 public class ProprietarioController {
 
 
-    @GetMapping("/proprietarios")
+    @GetMapping("/proprietarios2")
     public List<Proprietario> listar() {
         List<Proprietario> proprietarios = new ArrayList<>();
         var proprietario1 = new Proprietario();
