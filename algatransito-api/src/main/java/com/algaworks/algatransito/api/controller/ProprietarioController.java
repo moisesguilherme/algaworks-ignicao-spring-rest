@@ -1,28 +1,32 @@
 package com.algaworks.algatransito.api.controller;
 
 import com.algaworks.algatransito.domain.model.Proprietario;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
+import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 public class ProprietarioController {
 
-    @PersistenceContext
-    private EntityManager manager;
+    /*@Autowired
+    private ProprietarioRepository proprietarioRepository;
+    */
+    private final ProprietarioRepository proprietarioRepository;
+
+    //Injecão pelo construtor, boa prática, bom para fazer testes
+    //usando o Lombok, @AllArgsConstructor
+    /*public ProprietarioController(ProprietarioRepository proprietarioRepository) {
+        this.proprietarioRepository = proprietarioRepository;
+    }*/
 
     @GetMapping("/proprietarios")
     public List<Proprietario> listar() {
-        return manager.createQuery("from Proprietario", Proprietario.class)
-                .getResultList();
-
-        /*TypedQuery<Proprietario> query = manager
-                .createQuery("from Proprietario", Proprietario.class);
-        return query.getResultList();*/
+        return proprietarioRepository.findAll();
     }
 
 }
