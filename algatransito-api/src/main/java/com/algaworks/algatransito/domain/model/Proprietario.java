@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true) //Ver Include @EqualsAndHashCode.Include
 @Entity
-//@Table(name = "tb_proprietario")
 public class Proprietario {
 
     @EqualsAndHashCode.Include
@@ -18,13 +17,10 @@ public class Proprietario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@Column (Automático usando o padrão)
     private String nome;
     private String email;
 
     @Column(name = "fone")
     private String telefone;
-
-    //Método equals e HashCode (usando o lombok)
 
 }

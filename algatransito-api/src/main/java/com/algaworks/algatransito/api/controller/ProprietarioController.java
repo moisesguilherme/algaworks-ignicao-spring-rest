@@ -13,19 +13,12 @@ import java.util.List;
 @RestController
 public class ProprietarioController {
 
-    /*@Autowired
-    private ProprietarioRepository proprietarioRepository;
-    */
     private final ProprietarioRepository proprietarioRepository;
-
-    //Injecão pelo construtor, boa prática, bom para fazer testes
-    //usando o Lombok, @AllArgsConstructor
-    /*public ProprietarioController(ProprietarioRepository proprietarioRepository) {
-        this.proprietarioRepository = proprietarioRepository;
-    }*/
 
     @GetMapping("/proprietarios")
     public List<Proprietario> listar() {
+        //return proprietarioRepository.findByNomeContaining("Si");
+        //return proprietarioRepository.findByNome("João da Silva");
         return proprietarioRepository.findAll();
     }
 
