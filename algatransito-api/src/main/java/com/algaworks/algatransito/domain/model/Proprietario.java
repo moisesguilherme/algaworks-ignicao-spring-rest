@@ -1,17 +1,30 @@
 package com.algaworks.algatransito.domain.model;
 
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true) //Ver Include @EqualsAndHashCode.Include
+@Entity
+//@Table(name = "tb_proprietario")
 public class Proprietario {
 
+    @EqualsAndHashCode.Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //@Column (Automático usando o padrão)
     private String nome;
     private String email;
+
+    @Column(name = "fone")
     private String telefone;
 
-    // retirar Getters e Setters e usar o lombok
+    //Método equals e HashCode (usando o lombok)
 
 }
