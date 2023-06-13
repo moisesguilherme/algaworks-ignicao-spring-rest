@@ -25,13 +25,24 @@ public class ProprietarioController {
 
     @GetMapping("/proprietarios/{proprietarioId}")
     public ResponseEntity<Proprietario> buscar(@PathVariable Long proprietarioId){
+        //estilo funcional
+         return proprietarioRepository.findById(proprietarioId)
+                 .map(ResponseEntity::ok)
+                 .orElse(ResponseEntity.notFound().build());
+
+        // Lambda pode ser substituido por mehtod reference
+        // .map(proprietario -> ResponseEntity.ok(proprietario))
+        // fica: ResponseEntity::ok
+        // .map(ResponseEntity::ok)
+
+        /*
         Optional<Proprietario> proprietario = proprietarioRepository.findById(proprietarioId);
 
         if(proprietario.isPresent()) {
             return ResponseEntity.ok(proprietario.get());
         }
 
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.notFound().build();*/
     }
 
 }
