@@ -5,9 +5,11 @@ import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @RestController
@@ -17,9 +19,13 @@ public class ProprietarioController {
 
     @GetMapping("/proprietarios")
     public List<Proprietario> listar() {
-        //return proprietarioRepository.findByNomeContaining("Si");
-        //return proprietarioRepository.findByNome("João da Silva");
         return proprietarioRepository.findAll();
+    }
+
+    @GetMapping("/proprietarios/{proprietarioId}")
+    public Proprietario buscar(@PathVariable Long proprietarioId){
+        Optional<Proprietario> proprietario = proprietarioRepository.findById(proprietarioId);
+        return proprietario.orElse(null);
     }
 
 }
