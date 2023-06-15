@@ -1,6 +1,7 @@
 package com.algaworks.algatransito.api.controller;
 
 import com.algaworks.algatransito.domain.Service.RegistroProprietarioService;
+import com.algaworks.algatransito.domain.exception.NegocioException;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import jakarta.validation.Valid;
@@ -26,7 +27,6 @@ public class ProprietarioController {
 
     @GetMapping("/{proprietarioId}")
     public ResponseEntity<Proprietario> buscar(@PathVariable Long proprietarioId){
-        //estilo funcional
          return proprietarioRepository.findById(proprietarioId)
                  .map(ResponseEntity::ok)
                  .orElse(ResponseEntity.notFound().build());
@@ -36,7 +36,6 @@ public class ProprietarioController {
     @ResponseStatus(HttpStatus.CREATED)
     public Proprietario adicionar(@Valid @RequestBody Proprietario proprietario) {
         return registroProprietarioService.salvar(proprietario);
-        //return proprietarioRepository.save(proprietario);
     }
 
     @PutMapping("/{proprietarioId}")
@@ -60,5 +59,10 @@ public class ProprietarioController {
 
         proprietarioRepository.deleteById(proprietarioId);
         return ResponseEntity.noContent().build(); //204 Sucesso e Não tem nda no retorno
+    }
+
+    @ExceptionHandler(NegocioException.class)
+    public ResponseEntity<String> capturar(NegocioException e) {
+        return ResponseEntity.badRequest().body(e.getMessage()); //400
     }
 }

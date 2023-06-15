@@ -7,10 +7,8 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @AllArgsConstructor
-@Service // Identifica o componente como servico
+@Service
 public class RegistroProprietarioService {
 
     private final ProprietarioRepository proprietarioRepository;
