@@ -23,6 +23,7 @@ public class Veiculo {
     // @JoinColumn(name = "proprietario_id") Jakarta persistence já faz automáticamente
     private Proprietario proprietario;
     private String marca;
+    private String modelo;
     private String placa;
 
     @Enumerated(EnumType.STRING)
