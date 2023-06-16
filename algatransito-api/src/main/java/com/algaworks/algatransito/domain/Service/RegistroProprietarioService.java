@@ -13,6 +13,11 @@ public class RegistroProprietarioService {
 
     private final ProprietarioRepository proprietarioRepository;
 
+    public Proprietario buscar(Long proprietarioId) {
+        return proprietarioRepository.findById(proprietarioId)
+                .orElseThrow(() -> new NegocioException("Proprietário não encotrado"));
+    }
+
     @Transactional
     public Proprietario salvar(Proprietario proprietario) {
 
