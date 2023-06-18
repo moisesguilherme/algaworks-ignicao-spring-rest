@@ -44,5 +44,4 @@ public class VeiculoController {
         return ResponseEntity.badRequest().body(e.getMessage()); //400
     }
 
-
 }
