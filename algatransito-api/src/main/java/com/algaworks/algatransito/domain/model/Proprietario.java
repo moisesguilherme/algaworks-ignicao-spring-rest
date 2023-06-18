@@ -16,7 +16,7 @@ import lombok.Setter;
 @Entity
 public class Proprietario {
 
-    @NotNull //validacão, vai exigir o id e outras propriedades
+    @NotNull //validacão, vai exigir o id
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

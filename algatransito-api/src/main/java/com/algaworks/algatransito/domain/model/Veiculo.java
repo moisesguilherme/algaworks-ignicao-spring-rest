@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.groups.Default;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,8 +25,8 @@ public class Veiculo {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Valid //Ativacão em cascata
-    @NotNull
+    @Valid //Ativacão em cascata, vai exigir o id e outras propriedades
+    @NotNull(groups = Default.class) // Tem essa propriedade por padrão
     @ManyToOne
     private Proprietario proprietario;
 
