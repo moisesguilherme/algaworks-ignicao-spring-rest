@@ -1,5 +1,6 @@
 package com.algaworks.algatransito.domain.model;
 
+import com.algaworks.algatransito.domain.validation.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import jakarta.persistence.*;
@@ -7,6 +8,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.groups.ConvertGroup;
 import jakarta.validation.groups.Default;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,12 +27,13 @@ public class Veiculo {
     @EqualsAndHashCode.Include
     private Long id;
 
-    @Valid //Ativacão em cascata, vai exigir o id e outras propriedades
-    @NotNull(groups = Default.class) // Tem essa propriedade por padrão
+    @Valid //Validação em cascata para classe proprietário
+    @ConvertGroup(from = Default.class, to = ValidationGroups.ProprietarioId.class)
+    @NotNull
     @ManyToOne
     private Proprietario proprietario;
 
-    @NotBlank
+    @NotBlank //(groups = Default.class) //-> todos possuem essa propriedade
     private String marca;
 
     @NotBlank

@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/veiculos")
 public class VeiculoController {
 
-    //Não foi injetado com o @Autowired e sim com a notation @AllArgsConstructor
     private final VeiculoRepository veiculoRepository;
     private final RegistroVeiculoService registroVeiculoService;
 

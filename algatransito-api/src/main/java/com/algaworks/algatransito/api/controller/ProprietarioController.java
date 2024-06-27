@@ -58,11 +58,11 @@ public class ProprietarioController {
         }
 
         proprietarioRepository.deleteById(proprietarioId);
-        return ResponseEntity.noContent().build(); //204 Sucesso e Não tem nda no retorno
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(NegocioException.class)
     public ResponseEntity<String> capturar(NegocioException e) {
-        return ResponseEntity.badRequest().body(e.getMessage()); //400
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
