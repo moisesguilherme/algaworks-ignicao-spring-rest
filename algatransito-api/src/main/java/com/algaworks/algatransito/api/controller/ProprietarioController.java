@@ -1,7 +1,6 @@
 package com.algaworks.algatransito.api.controller;
 
 import com.algaworks.algatransito.domain.Service.RegistroProprietarioService;
-import com.algaworks.algatransito.domain.exception.NegocioException;
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import jakarta.validation.Valid;
@@ -61,8 +60,5 @@ public class ProprietarioController {
         return ResponseEntity.noContent().build();
     }
 
-    @ExceptionHandler(NegocioException.class)
-    public ResponseEntity<String> capturar(NegocioException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
+
 }
