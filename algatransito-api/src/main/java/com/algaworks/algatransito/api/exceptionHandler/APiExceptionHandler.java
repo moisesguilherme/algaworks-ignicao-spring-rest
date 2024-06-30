@@ -1,7 +1,10 @@
 package com.algaworks.algatransito.api.exceptionHandler;
 
 import com.algaworks.algatransito.domain.exception.NegocioException;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
@@ -18,8 +21,12 @@ import java.net.URI;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
+@AllArgsConstructor
 @RestControllerAdvice
 public class APiExceptionHandler extends ResponseEntityExceptionHandler {
+
+    private final MessageSource messageSource;
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
@@ -31,9 +38,7 @@ public class APiExceptionHandler extends ResponseEntityExceptionHandler {
         Map<String, String> fields = ex.getBindingResult().getAllErrors()
                .stream()
                .collect(Collectors.toMap(objectError -> ((FieldError)objectError).getField(),
-                       DefaultMessageSourceResolvable::getDefaultMessage)); //objectError -> objectError.getDefaultMessage()));
-
-               //.forEach( objectError -> System.out.println(((FieldError) objectError).getField() + " - " + objectError.getDefaultMessage()));
+                       objectError -> messageSource.getMessage(objectError, LocaleContextHolder.getLocale())));
 
         problemDetail.setProperty("fields", fields);
 
