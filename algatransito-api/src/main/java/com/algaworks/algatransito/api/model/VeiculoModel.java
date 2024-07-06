@@ -16,7 +16,7 @@ public class VeiculoModel {
 
     private Long id;
     // Não precisa ser igual a entidade, esse é o objetivo de ter um Representation model
-    private String nomeProprietario;
+    private ProprietarioResumoModel proprietario;
     private String marca;
     private String modelo;
     private String numeroPlaca;
