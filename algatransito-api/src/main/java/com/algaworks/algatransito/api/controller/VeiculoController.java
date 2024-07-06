@@ -27,11 +27,7 @@ public class VeiculoController {
     @GetMapping
     public List<VeiculoModel> listar() {
         List<Veiculo> veiculos = veiculoRepository.findAll();
-
-        return veiculos.stream()
-                .map(veiculoAssembler::toModel)
-                .collect(Collectors.toList());
-
+        return veiculoAssembler.toCollectionModel(veiculos);
     }
 
     @GetMapping("/{veiculoId}")
