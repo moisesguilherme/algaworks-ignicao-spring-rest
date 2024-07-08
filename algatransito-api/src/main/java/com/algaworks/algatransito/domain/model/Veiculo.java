@@ -41,4 +41,12 @@ public class Veiculo {
     @OneToMany(mappedBy = "veiculo")
     private List<Autuacao> autuacaoes = new ArrayList<>();
 
+    //Classe anêmica ou modelo Anemico, quando usa apenas para transporte de dados
+    //não são ricas, não tem nda de negócio
+    public Autuacao adicionarAutuacao(Autuacao autuacao) {
+        autuacao.setDataOcorrencia(OffsetDateTime.now());
+        autuacao.setVeiculo(this);
+        getAutuacaoes().add(autuacao);
+        return autuacao;
+    }
 }
