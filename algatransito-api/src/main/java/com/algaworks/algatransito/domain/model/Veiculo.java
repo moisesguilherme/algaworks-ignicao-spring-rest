@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -34,5 +36,9 @@ public class Veiculo {
 
     private OffsetDateTime dataCadastro;
     private OffsetDateTime dataApreensao;
+
+    // Associação bidirecional - "veiculo" é a propriedade que está em Atuação
+    @OneToMany(mappedBy = "veiculo")
+    private List<Autuacao> autuacaoes = new ArrayList<>();
 
 }
