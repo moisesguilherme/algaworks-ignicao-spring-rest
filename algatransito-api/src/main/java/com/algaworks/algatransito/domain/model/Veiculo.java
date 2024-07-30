@@ -31,14 +31,14 @@ public class Veiculo {
 
     private String placa;
 
-
+    @Enumerated(EnumType.STRING)
     private StatusVeiculo status;
 
     private OffsetDateTime dataCadastro;
     private OffsetDateTime dataApreensao;
 
     // Associação bidirecional - "veiculo" é a propriedade que está em Atuação
-    @OneToMany(mappedBy = "veiculo")
+    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
     private List<Autuacao> autuacaoes = new ArrayList<>();
 
     //Classe anêmica ou modelo Anemico, quando usa apenas para transporte de dados
